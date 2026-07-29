@@ -204,8 +204,7 @@ body.no-bar{padding-bottom:0}
 .mod-tight > .mod-h{padding-inline:var(--pad)}
 .mod-h{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
 .mod-h .n{
-  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--gold);flex:none;
-  display:inline-flex;align-items:center;gap:9px;
+  font-size:0;flex:none;display:inline-flex;align-items:center;
 }
 .mod-h .n::before{content:'';width:18px;height:1px;background:var(--line-gold)}
 .mod-h .t{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--paper-3)}
@@ -238,7 +237,7 @@ body.no-bar{padding-bottom:0}
 }
 .hero-top{
   position:absolute;left:var(--pad);right:var(--pad);top:14px;z-index:2;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  display:flex;align-items:center;justify-content:flex-end;gap:12px;
 }
 .hero-live{display:inline-flex;align-items:center;gap:9px}
 .hero-live .dot{width:6px;height:6px;background:var(--gold);animation:pulse 2.4s var(--ease) infinite}
@@ -247,7 +246,7 @@ body.no-bar{padding-bottom:0}
 .hero-body{position:relative;z-index:3;margin-top:-36px;padding:0 var(--pad) 4px}
 .hero-logo{width:min(168px,46vw);height:auto;margin-bottom:16px}
 .hero-title{margin-bottom:6px}
-.hero-title .l2{display:block;color:transparent;-webkit-text-stroke:1px rgba(242,242,240,.44)}
+.hero-title .l2{display:block;color:var(--paper-3)}
 @supports not (-webkit-text-stroke:1px #000){ .hero-title .l2{color:var(--paper-3)} }
 .hero-meta{
   margin-top:16px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-2);
@@ -949,7 +948,6 @@ body.no-bar{padding-bottom:0}
         <source src="./assets/video/hero.mp4" type="video/mp4">
       </video>
       <p class="hero-top">
-        <span class="hero-live"><span class="dot" aria-hidden="true"></span><span class="lbl">Nennung offen</span></span>
         <button class="link" data-mock>Login</button>
       </p>
     </div>
@@ -958,8 +956,7 @@ body.no-bar{padding-bottom:0}
       <img class="hero-logo" src="./assets/logo/logo.png" alt="HIGH OCTANE MALLORCA" width="899" height="438">
 
       <h1 class="h-xl hero-title">
-        <span class="l1">Eine Ausfahrt</span>
-        <span class="l2">über die Insel</span>
+        <span class="l1">Die Ausfahrt</span>
       </h1>
 
       <p class="hero-meta mono">Dienstag, 15.12.2026<span aria-hidden="true">·</span>290 € je Fahrzeug</p>
@@ -978,8 +975,8 @@ body.no-bar{padding-bottom:0}
     </div>
   </div>
 
-  <!-- Marquee -->
-  <div class="ticker" aria-hidden="true">
+  <!-- Marquee entfernt: wiederholte Datum und Preis aus dem Hero -->
+  <div class="ticker" aria-hidden="true" hidden>
     <div class="ticker-track" id="tickerTrack">
       <div class="ticker-seq">
         <span>Dienstag, 15.12.2026</span><span>290 € je Fahrzeug, inkl. Fahrer</span><span>Treffpunkt <em>[TREFFPUNKT FOLGT]</em></span><span>Route <em>[ROUTE WIRD NACHGEREICHT]</em></span><span>Buchungsschluss <em>[FOLGT]</em></span>
@@ -1723,7 +1720,7 @@ buildTimeline($('#tlEvent'));
   var host = $('#chainStart');
   if(!host) return;
   host.innerHTML = ABLAUF.map(function(p,i){
-    return '<li><i class="mono">' + pad(i+1,2) + '</i>' + p[1] + '</li>';
+    return '<li>' + p[1] + '</li>';
   }).join('');
 })();
 
