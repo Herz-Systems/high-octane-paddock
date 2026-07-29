@@ -3,7 +3,7 @@
    Cache-Cleanup ausschliesslich mit eigenem Präfix 'hom-c-'. */
 
 const PREFIX = 'hom-c-';
-const CACHE = PREFIX + 'v1';
+const CACHE = PREFIX + 'v2';
 
 const PRECACHE = [
   './',
@@ -51,6 +51,11 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
+
+  // iOS fordert Videos in Bereichen an (Range-Request) und erwartet eine Teilantwort.
+  // Aus dem Cache käme immer die ganze Datei — dann bleibt das Video stehen.
+  // Deshalb: Bereichsanfragen und Videos grundsätzlich direkt ans Netz durchreichen.
+  if (req.headers.has('range') || req.destination === 'video') return;
 
   const isDoc = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
 
