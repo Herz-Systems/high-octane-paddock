@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "high-octane",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "/Users/jacobmagnus/DESINGS MIT FABLE 5/high-octane"],
+      "port": 8791
+    }
+  ]
+}
